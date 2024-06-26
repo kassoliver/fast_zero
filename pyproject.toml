@@ -11,6 +11,9 @@ python = "3.12.*"  # ou 3.11.*
 fastapi = "^0.109.2"
 uvicorn = "^0.27.0.post1"
 pydantic = {extras = ["email"], version = "^2.7.4"}
+sqlalchemy = "^2.0.31"
+pydantic-settings = "^2.3.4"
+alembic = "^1.13.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.0"
@@ -38,7 +41,7 @@ addopts = '-p no:warnings'
 [tool.taskipy.tasks]
 lint = 'ruff check . && ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'
-run = 'fastapi dev fast_zero/app.py'
+run = 'uvicorn fast_zero.app:app --reload'
 pre_test = 'task lint'
 test = 'pytest -s -x --cov=fast_zero -vv'
 post_test = 'coverage html'
