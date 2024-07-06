@@ -10,4 +10,6 @@ def test_create_user(session):
 
     user = session.scalar(select(User).where(User.username == 'kassia'))
 
+    breakpoint()
+
     assert user.username == 'kassia'
